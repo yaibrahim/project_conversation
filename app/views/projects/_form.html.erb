@@ -1,21 +1,90 @@
-<%= form_with(model: project, local: true) do |f| %>
-    <div class="mb-6">
-      <%= f.label :name, class: "block text-lg font-semibold mb-2" %>
-      <%= f.text_field :name, class: "w-full border border-gray-300 rounded-lg p-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+<style>
+  .form-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-label {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+
+  .form-input, .form-textarea, .form-select {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    box-sizing: border-box;
+    background-color: #f9fafb;
+    transition: border-color 0.3s ease;
+  }
+
+  .form-input:focus, .form-textarea:focus, .form-select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+  }
+
+  .form-textarea {
+    resize: vertical;
+  }
+
+  .form-submit {
+    background-color: #3b82f6;
+    color: white;
+    padding: 1rem 2rem;
+    font-weight: 600;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .form-submit:hover {
+    background-color: #2563eb;
+  }
+
+  .form-submit:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+  }
+
+  .form-footer {
+    text-align: right;
+  }
+</style>
+
+<div class="form-container">
+  <%= form_with(model: project, local: true) do |f| %>
+    <div class="form-group">
+      <%= f.label :name, class: "form-label" %>
+      <%= f.text_field :name, class: "form-input" %>
     </div>
-  
-    <div class="mb-6">
-      <%= f.label :description, class: "block text-lg font-semibold mb-2" %>
-      <%= f.text_area :description, rows: 4, class: "w-full border border-gray-300 rounded-lg p-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+
+    <div class="form-group">
+      <%= f.label :description, class: "form-label" %>
+      <%= f.text_area :description, rows: 4, class: "form-textarea" %>
     </div>
-  
-    <div class="mb-6">
-      <%= f.label :status, class: "block text-lg font-semibold mb-2" %>
-      <%= f.select :status, ['Pending', 'In Progress', 'Completed'], {}, class: "w-full border border-gray-300 rounded-lg p-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+
+    <div class="form-group">
+      <%= f.label :status, class: "form-label" %>
+      <%= f.select :status, ['Pending', 'In Progress', 'Completed'], {}, class: "form-select" %>
     </div>
-  
-    <div class="flex justify-end">
-      <%= f.submit class: "bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+
+    <div class="form-footer">
+      <%= f.submit class: "form-submit" %>
     </div>
   <% end %>
-  
+</div>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title><%= content_for(:title) || "Project Conversations" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -16,26 +16,82 @@
 
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+
+      .navbar {
+        background-color: #2b6cb0; /* Blue */
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .navbar a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        margin-right: 20px;
+        font-weight: bold;
+      }
+
+      .navbar a:hover {
+        color: #edf2f7; /* Light Gray */
+      }
+
+      .navbar .auth-links a {
+        background-color: #2b6cb0;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-align: center;
+        transition: background-color 0.3s ease;
+      }
+
+      .navbar .auth-links a:hover {
+        background-color: #3182ce;
+      }
+
+      .navbar .auth-links .sign-up {
+        background-color: #38a169; /* Green */
+      }
+
+      .navbar .auth-links .sign-up:hover {
+        background-color: #2f855a; /* Darker Green */
+      }
+
+      .main-content {
+        padding: 40px;
+        margin-top: 30px;
+        background-color: white;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+    </style>
   </head>
 
   <body>
-    <div class="bg-blue-500 text-white">
-      <nav class="container mx-auto flex justify-between items-center p-4">
-        <div class="text-lg font-bold">Project Conversations</div>
-
-        <% if user_signed_in? %>
-          <div class="flex items-center space-x-4 ml-auto">
-            <span class="text-sm text-gray-200"><%= current_user.email %></span>
-            <%= form_with url: destroy_user_session_path, method: :delete, class: "inline-block" do %>
-              <%= submit_tag 'Logout', class: "bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded" %>
+    <!-- Navbar -->
+    <div class="navbar">
+      <nav style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <%= link_to "Project Conversations", root_path, class: "font-size: 24px; color: white;" %>
+        </div>
+        
+        <div class="auth-links" style="display: flex; align-items: center;">
+          <% if user_signed_in? %>
+            <span style="color: white; margin-right: 15px;">Logged in as <%= current_user.email %></span>
+            <%= form_with url: destroy_user_session_path, method: :delete, html: { style: "display: inline-block;" } do %>
+              <%= submit_tag 'Logout', class: "background-color: #e53e3e; color: white; padding: 10px 20px; border-radius: 5px; cursor: pointer;" %>
             <% end %>            
-          </div>
-        <% else %>
-          <div class="flex items-center space-x-4 ml-auto">
-            <%= link_to 'Login', new_user_session_path, class: "bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded" %>
-            <%= link_to 'Sign Up', new_user_registration_path, class: "bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded" %>
-          </div>
-        <% end %>
+          <% else %>
+            <%= link_to 'Login', new_user_session_path, class: "auth-links", style: "background-color: #2b6cb0; color: white; padding: 10px 20px; border-radius: 5px;" %>
+            <%= link_to 'Sign Up', new_user_registration_path, class: "auth-links sign-up", style: "background-color: #38a169; color: white; padding: 10px;" %>
+          <% end %>
+        </div>
       </nav>
     </div>
 
