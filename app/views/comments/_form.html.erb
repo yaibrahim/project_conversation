@@ -1,0 +1,8 @@
+<h4 class="text-lg font-bold mb-2">Add a Comment</h4>
+
+<%= form_with(model: [project, comment], local: true) do |f| %>
+  <div class="mb-3">
+    <%= f.text_area :content, rows: 3, class: "w-full border rounded p-2", placeholder: "Type your comment here..." %>
+  </div>
+  <%= f.submit "Comment", class: "bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded" %>
+<% end %>

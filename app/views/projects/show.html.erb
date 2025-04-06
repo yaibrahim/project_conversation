@@ -1,0 +1,24 @@
+<h2 class="text-2xl font-bold mb-2"><%= @project.name %></h2>
+<p class="text-gray-600 mb-2">Status: <%= @project.status %></p>
+<p class="mb-4"><%= @project.description %></p>
+
+<%= link_to 'Edit Project', edit_project_path(@project), class: "bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded" %>
+<%= link_to 'Back', projects_path, class: "ml-2 underline" %>
+
+<hr class="my-6">
+
+<h3 class="text-xl font-semibold mb-2">Conversation History</h3>
+
+<div class="space-y-2 mb-6">
+  <% @comments.each do |comment| %>
+    <div class="p-3 border rounded bg-gray-100">
+      <p class="text-gray-800"><%= comment.content %></p>
+      <p class="text-sm text-gray-500 mt-1">By <%= comment.user.email %> at <%= comment.created_at.strftime("%b %d, %H:%M") %></p>
+      <% if comment.user == current_user %>
+        <%= link_to 'Delete', project_comment_path(@project, comment), method: :delete, data: { confirm: 'Are you sure?' }, class: "text-red-500 text-sm mt-1 inline-block" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<%= render 'comments/form', project: @project, comment: @comment %>

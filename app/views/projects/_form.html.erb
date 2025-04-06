@@ -1,0 +1,21 @@
+<%= form_with(model: project, local: true) do |f| %>
+    <div class="mb-6">
+      <%= f.label :name, class: "block text-lg font-semibold mb-2" %>
+      <%= f.text_field :name, class: "w-full border border-gray-300 rounded-lg p-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
+  
+    <div class="mb-6">
+      <%= f.label :description, class: "block text-lg font-semibold mb-2" %>
+      <%= f.text_area :description, rows: 4, class: "w-full border border-gray-300 rounded-lg p-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
+  
+    <div class="mb-6">
+      <%= f.label :status, class: "block text-lg font-semibold mb-2" %>
+      <%= f.select :status, ['Pending', 'In Progress', 'Completed'], {}, class: "w-full border border-gray-300 rounded-lg p-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
+  
+    <div class="flex justify-end">
+      <%= f.submit class: "bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
+  <% end %>
+  
